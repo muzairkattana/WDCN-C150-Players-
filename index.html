@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WDCN C150 Players — Registration Form</title>
+
+  <!-- Google font similar to the poster -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --green-1: #16c24b;        /* bright green */
+      --green-2: #0f3e2e;        /* dark green panel */
+      --dark-bg: #0f2a23;        /* very dark green for header */
+      --muted: #d9d9d9;
+      --page-bg: #f6f8f7;
+      --accent: #66d07d;
+      --input-border: #78c88f;
+      --panel-radius: 12px;
+      --container-w: 1100px;
+    }
+
+    *{box-sizing: border-box}
+    body{
+      margin:0;
+      font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--page-bg);
+      color: #0c2b22;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding: 24px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .card{
+      width: min(var(--container-w), 98vw);
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(10,20,15,0.08);
+      overflow: hidden;
+    }
+
+    /* header */
+    .top{
+      background: linear-gradient(90deg,var(--dark-bg), rgba(12,40,30,0.95));
+      padding: 26px 32px;
+      color: white;
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+    .brand-left{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .brand-left .big{
+      font-family: "Montserrat", sans-serif;
+      font-weight:800;
+      font-size:34px;
+      letter-spacing:4px;
+      color: var(--accent);
+    }
+    .brand-left .sub{
+      font-family: "Montserrat", sans-serif;
+      font-weight:700;
+      font-size:18px;
+      color: #fff;
+      opacity:0.95;
+    }
+    .title{
+      margin-left:auto;
+      font-family: "Montserrat", sans-serif;
+      font-weight:800;
+      font-size:44px;
+      letter-spacing:1px;
+    }
+
+    /* main content */
+    .body{
+      padding: 28px 36px;
+      display:flex;
+      gap:28px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .left{
+      flex:1 1 620px;
+      min-width:320px;
+    }
+
+    h3.section-title{
+      margin:0 0 14px 0;
+      font-family:"Montserrat",sans-serif;
+      color:#0c2b22;
+      font-size:20px;
+      letter-spacing:1px;
+    }
+
+    .personal{
+      background: linear-gradient(180deg, rgba(112,200,149,0.03), transparent);
+      padding: 18px 22px;
+      border-radius: 10px;
+      border: 1px solid rgba(16,90,60,0.03);
+    }
+
+    .form-row{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin:10px 0;
+    }
+    .label{
+      width:160px;
+      min-width:120px;
+      color:#1a2d28;
+      font-weight:600;
+      font-size:14px;
+      padding-left:6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    textarea{
+      flex:1;
+      padding:10px 14px;
+      border-radius:8px;
+      border:2px solid var(--input-border);
+      outline:none;
+      font-size:14px;
+      background: transparent;
+    }
+    textarea{ min-height:56px; resize:vertical; }
+
+    /* DOB small boxes */
+    .dob{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex:1;
+    }
+    .dob input{
+      width:80px;
+      padding:8px 10px;
+      text-align:center;
+      font-weight:600;
+    }
+    .dob .dob-day{width:60px}
+    .dob .dob-month{width:60px}
+    .dob .dob-year{width:120px}
+
+    /* right small logo area */
+    .right{
+      width:220px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      gap:12px;
+      flex-direction:column;
+    }
+
+    .logo{
+      width:140px;
+      height:140px;
+      border-radius:10px;
+      background: linear-gradient(135deg,#fff,#eefaf0);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: 0 6px 18px rgba(10,20,15,0.06);
+      border:3px solid rgba(14,85,50,0.06);
+    }
+    .logo img{max-width:85%; max-height:85%}
+
+    /* CLUB DETAILS panel */
+    .club-panel{
+      margin-top:22px;
+      background: linear-gradient(180deg,var(--green-2), #0d2f27);
+      color: #dfffe6;
+      padding:22px;
+      border-radius: var(--panel-radius);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+    }
+    .club-row{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin:12px 0;
+      flex-wrap:wrap;
+    }
+    .players-opts{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-left:6px;
+    }
+    .players-opts label{display:flex;gap:8px;align-items:center;cursor:pointer}
+    .players-opts input[type="checkbox"]{width:18px;height:18px;border-radius:4px; accent-color: var(--green-1);}
+
+    .club-panel .label{ color:#dfffe6; font-weight:700; }
+    .club-panel input[type="text"],
+.club-panel textarea {
+  background: #ffffff;      /* Pure white background */
+  color: #0c2b22;           /* Dark text (same as poster) */
+  border: 1.5px solid #1ad463;   /* Bright green stroke */
+  border-radius: 6px;       /* Slight rounding like poster */
+}
+
+    .checkbox-grid{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .small-check{display:flex;gap:8px;align-items:center;color:#dfffe6;font-weight:600}
+
+    /* footer / contact strip */
+    .footer-strip{
+      margin-top:18px;
+      background:#ebebeb;
+      padding:14px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:#333;
+      font-weight:600;
+      border-top: 1px solid #e0e0e0;
+      font-size:14px;
+    }
+
+  /* 🔥 NEW RESPONSIVE FIX (Keeps Desktop Layout on All Screens) */
+@media (max-width: 760px) {
+
+.card {
+    width: 100%;
+    transform: scale(0.82);  /* Shrinks desktop layout for mobile */
+    transform-origin: top center;
+}
+
+body {
+    padding: 0;               /* removes side white space */
+    display: flex;
+    justify-content: center;
+}
+
+.body {
+    flex-wrap: nowrap;        /* prevents breaking */
+}
+
+.right {
+    width: 200px;             /* keeps logo area same */
+}
+
+.form-row .label {
+    width: 160px !important;  /* prevents text wrapping */
+}
+
+input, textarea, select {
+    font-size: 13px;
+}
+}
+
+  </style>
+</head>
+<body>
+  <div class="card" role="main" aria-labelledby="formTitle">
+    <div class="top" role="banner">
+      <div class="brand-left">
+        <div class="big">W D C N</div>
+        <div class="title" id="formTitle">Registration Form</div>
+        <div class="sub">C150 PLAYERS</div>
+      </div>
+
+  
+    </div>
+
+    <div class="body">
+      <div class="left">
+        <h3 class="section-title">PERSONAL INFORMATION</h3>
+
+        <div class="personal" aria-label="personal information">
+          <div class="form-row">
+            <div class="label">Full Name</div>
+            <input type="text" placeholder="Enter full name" aria-label="Full name">
+          </div>
+
+          <div class="form-row">
+            <div class="label">Email Address</div>
+            <input type="email" placeholder="you@example.com" aria-label="Email address">
+          </div>
+
+          <div class="form-row">
+            <div class="label">Phone Number</div>
+            <input type="tel" placeholder="+92 3xx xxxxxxx" aria-label="Phone number">
+          </div>
+
+          <div class="form-row" style="align-items:center;">
+            <div class="label">Date of Birth</div>
+            <div class="dob" aria-label="date of birth">
+              <input class="dob-day" type="text" maxlength="2" placeholder="DD" aria-label="day">
+              <input class="dob-month" type="text" maxlength="2" placeholder="MM" aria-label="month">
+              <input class="dob-year" type="text" maxlength="4" placeholder="YYYY" aria-label="year">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="label">Address</div>
+            <textarea placeholder="Street address, area, building..." aria-label="Address"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="label">City</div>
+            <input type="text" placeholder="City" aria-label="City">
+          </div>
+
+          <div class="form-row">
+            <div class="label">ZIP/Postal Code</div>
+            <input type="text" placeholder="Postal code" aria-label="Postal code" style="max-width:220px;">
+          </div>
+
+          <div class="form-row">
+            <div class="label">State/Province</div>
+            <input type="text" placeholder="State or province" aria-label="State">
+          </div>
+
+          <div class="form-row">
+            <div class="label">Country</div>
+            <input type="text" placeholder="Country" aria-label="Country">
+          </div>
+        </div>
+
+        <!-- Club Details area placed under personal on left column -->
+        <div style="margin-top:20px;">
+          <h3 class="section-title" style="margin-bottom:8px;">CLUB DETAILS</h3>
+
+          <div class="club-panel" role="region" aria-label="club details">
+            <div class="club-row">
+              <div class="label" style="width:auto">PLAYERS REGISTRATION</div>
+              <div class="players-opts" aria-label="player counts">
+                <label><input type="checkbox" /> 15</label>
+                <label><input type="checkbox" /> 18</label>
+                <label><input type="checkbox" /> 20</label>
+                <label><input type="checkbox" /> 25</label>
+              </div>
+            </div>
+
+            <div class="club-row">
+              <div class="label">Club Name</div>
+              <input type="text" placeholder="Club name" style="max-width:320px;">
+              <div class="label" style="width:auto; margin-left:10px;">Team Owner</div>
+              <input type="text" placeholder="Owner name" style="max-width:220px;">
+            </div>
+
+            <div class="club-row">
+              <div class="label">Address</div>
+              <textarea placeholder="Club address" style="flex:1"></textarea>
+            </div>
+
+            <div class="checkbox-grid">
+              <label class="small-check"><input type="checkbox" /> Under 19</label>
+              <label class="small-check"><input type="checkbox" /> Under 16</label>
+             
+            </div>
+            <div class="checkbox-grid">
+              <label class="small-check"><input type="checkbox" /> Grade 2</label>
+              <label class="small-check"><input type="checkbox" /> First Class</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="right" aria-label="right column">
+        <div style="text-align:center">
+         
+          <div class="logo" role="img" aria-label="WDCN logo placeholder">
+         
+          <div class="logo" role="img" aria-label="WDCN logo">
+            <img src="images.jfif" alt="WDCN Logo">
+          </div>
+          
+      </aside>
+    </div>
+
+    <div class="footer-strip" role="contentinfo">
+      <div>03339025520</div>
+      <div style="opacity:0.9">www.wdcnofficial.com</div>
+      <div style="opacity:0.9">wdcnofficial@gmail.com</div>
+    </div>
+
+  </div>
+</body>
+</html>
